@@ -75,7 +75,9 @@ phina.define('MainScene', {
         }
         // ミサイルとプレイヤーの当たり判定
         this.missileGroup.children.some(missile => {
-            if (missile.hitTestElement(this.player)) {
+            var c1 = Circle(this.player.x, this.player.y, 32);
+            var c2 = Circle(missile.x, missile.y, 4);
+            /*if (this.player.hitTestElement(missile))*/ if (Collision.testCircleCircle(c1, c2)) {
                 missile.flare('hit');
                 this.player.flare('hit');
             }
